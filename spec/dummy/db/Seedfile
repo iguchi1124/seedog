@@ -1,0 +1,11 @@
+# vi: set ft=ruby :
+
+table :users do
+  record id: 1 do
+    name 'name'
+  end
+
+  record id: 2 do
+    name 'hoge'
+  end
+end
