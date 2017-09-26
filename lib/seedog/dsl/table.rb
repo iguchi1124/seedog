@@ -17,7 +17,6 @@ module Seedog
 
       private
 
-
       def record(upsert_attributes, &block)
         record = Record.new(self, upsert_attributes)
         record.(&block)

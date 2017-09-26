@@ -15,7 +15,7 @@ module Seedog
 
         instance_exec(&block) if block
 
-        model.save!
+        model.save!(validate: Seedog.config.validate)
       end
 
       private
