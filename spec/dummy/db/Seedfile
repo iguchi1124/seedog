@@ -1,7 +1,7 @@
 # vi: set ft=ruby :
 
 transaction do
-  table :users do
+  model User do
     record id: 1 do
       name 'user 1'
     end
@@ -11,9 +11,9 @@ transaction do
     end
   end
 
-  table :profiles do
+  model Profile do
     record user_id: 1 do
-      biography 'user 1 bio'
+      biography 'bio 1'
     end
   end
 end

@@ -1,5 +1,5 @@
 require 'seedog/dsl/record'
-require 'seedog/dsl/table'
+require 'seedog/dsl/model'
 require 'seedog/dsl/transaction'
 
 module Seedog
@@ -10,9 +10,9 @@ module Seedog
 
     private
 
-    def table(name, &block)
-      table = Table.new(@evaluator, name)
-      table.(&block)
+    def model(model_class, &block)
+      model = Model.new(@evaluator, model_class)
+      model.(&block)
     end
 
     def transaction

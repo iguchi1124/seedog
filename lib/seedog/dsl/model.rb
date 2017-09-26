@@ -1,19 +1,15 @@
 module Seedog
   class DSL
-    class Table
-      attr_reader :name
+    class Model
+      attr_reader :model_class
 
-      def initialize(evaluator, name)
+      def initialize(evaluator, model_class)
         @evaluator = evaluator
-        @name = name
+        @model_class = model_class
       end
 
       def call(&block)
         instance_exec(&block)
-      end
-
-      def model_class
-        @model_class ||= Module.const_get(name.to_s.classify)
       end
 
       private
