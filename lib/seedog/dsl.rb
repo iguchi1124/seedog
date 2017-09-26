@@ -1,5 +1,6 @@
-require 'seedog/dsl/table'
 require 'seedog/dsl/record'
+require 'seedog/dsl/table'
+require 'seedog/dsl/transaction'
 
 module Seedog
   class DSL
@@ -18,6 +19,10 @@ module Seedog
     def table(name, &block)
       table = Table.new(name)
       table.(&block)
+    end
+
+    def transaction
+      Transaction.new { yield }
     end
   end
 end
