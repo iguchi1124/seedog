@@ -4,20 +4,14 @@ require 'seedog/dsl/transaction'
 
 module Seedog
   class DSL
-    def initialize(file)
-      @file = file
-    end
-
-    def exec(dry_run: false)
-      unless dry_run
-        instance_eval @file.read
-      end
+    def initialize(evaluator)
+      @evaluator = evaluator
     end
 
     private
 
     def table(name, &block)
-      table = Table.new(name)
+      table = Table.new(@evaluator, name)
       table.(&block)
     end
 

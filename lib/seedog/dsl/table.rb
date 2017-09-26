@@ -3,7 +3,8 @@ module Seedog
     class Table
       attr_reader :name
 
-      def initialize(name)
+      def initialize(evaluator, name)
+        @evaluator = evaluator
         @name = name
       end
 
@@ -18,7 +19,7 @@ module Seedog
       private
 
       def record(upsert_attributes, &block)
-        record = Record.new(self, upsert_attributes)
+        record = Record.new(@evaluator, self, upsert_attributes)
         record.(&block)
       end
     end

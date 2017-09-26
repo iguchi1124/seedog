@@ -1,26 +1,26 @@
 require 'seedog/configuration'
-require 'seedog/dsl'
+require 'seedog/evaluator'
 
 require 'seedog/engine' if defined?(Rails)
 
 module Seedog
   class << self
     def run
-      dsl.exec
+      evaluator = Evaluator.new(config)
+      evaluator.run
     end
 
     def dry_run
-      dsl.exec(dry_run: true)
+      evaluator = Evaluator.new(config, dry_run: true)
+      evaluator.run
     end
 
     def config
       @config ||= Configuration.new
     end
 
-    private
-
-    def dsl
-      DSL.new(config.file)
+    def configure
+      yield config
     end
   end
 end

@@ -3,11 +3,17 @@
 transaction do
   table :users do
     record id: 1 do
-      name 'name'
+      name 'user 1'
     end
 
     record id: 2 do
-      name 'hoge'
+      name 'user 2'
+    end
+  end
+
+  table :profiles do
+    record user_id: 1 do
+      biography 'user 1 bio'
     end
   end
 end
