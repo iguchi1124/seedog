@@ -13,7 +13,7 @@ module Seedog
       end
 
       def model_class
-        @model_class ||= eval(name.to_s.classify)
+        @model_class ||= Module.const_get(name.to_s.classify)
       end
 
       private
