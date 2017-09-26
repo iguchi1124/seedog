@@ -16,4 +16,11 @@ transaction do
       biography 'bio 1'
     end
   end
+
+  model Article do
+    record id: 1, user_id: 1 do
+      title 'welcome!'
+      body 'this is first article!'
+    end
+  end
 end
