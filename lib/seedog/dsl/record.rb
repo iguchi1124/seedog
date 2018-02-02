@@ -19,9 +19,9 @@ module Seedog
 
         before_attrs = instance.attributes.slice(*attrs.keys)
         if instance.new_record?
-          puts "Create new #{@model.model_class.name.downcase} #{@upsert_attributes.merge(attrs)}"
+          puts "\33[32mCreate #{@model.model_class.name.downcase} #{@upsert_attributes.merge(attrs)}\33[0m"
         elsif before_attrs != attrs
-          puts "Update #{@model.model_class.name.downcase} #{@upsert_attributes.merge(before_attrs)} => #{@upsert_attributes.merge(attrs)}"
+          puts "Update #{@model.model_class.name.downcase} #{@upsert_attributes.merge(before_attrs)} to #{@upsert_attributes.merge(attrs)}"
         end
 
         unless @evaluator.dry_run
