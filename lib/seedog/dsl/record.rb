@@ -19,11 +19,13 @@ module Seedog
 
         if instance.new_record?
           puts "\33[32mCreate #{@model.model_class.name.underscore} #{@upsert_attributes.merge(@attrs)}\33[0m"
+          @evaluator.changed = true
         elsif before_attrs != @attrs
           puts "Update #{@model.model_class.name.underscore} #{@upsert_attributes.merge(before_attrs)} to #{@upsert_attributes.merge(@attrs)}"
+          @evaluator.changed = true
         end
 
-        unless @evaluator.dry_run
+        if !@evaluator.dry_run && @evaluator.changed
           instance.assign_attributes(@attrs)
           instance.save!(validate: @evaluator.config.validate)
         end
